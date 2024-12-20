@@ -2,7 +2,7 @@
 JWT | Spring boot &amp; Angular | User Login &amp; Registration with Email validation
 
 ## Courtesy of Bouali Ali (@BoualiAli)
-youtu.be/xqhdRrFzLFY?si=tG1JZRsJv57zEOoM
+[JWT | Spring boot & Angular | User Login & Registration with Email validation | Full tutorial](https://youtu.be/xqhdRrFzLFY?si=qRQfuIYnal6sgyxH)
 
 ## Table of contents
 - Docker Compose
