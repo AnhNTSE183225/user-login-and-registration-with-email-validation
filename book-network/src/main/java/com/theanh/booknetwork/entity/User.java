@@ -42,10 +42,10 @@ public class User implements UserDetails, Principal {
     String password;
 
     @Builder.Default
-    boolean locked = true;
+    boolean locked = false;
 
     @Builder.Default
-    boolean enabled = true;
+    boolean enabled = false;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
