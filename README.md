@@ -22,3 +22,19 @@ JWT | Spring boot &amp; Angular | User Login &amp; Registration with Email valid
 - Implement the Login page
 - Implement the Registration page
 - Implement the activate account Page
+
+### Spring Boot Dependencies Used
+#### Web
+- Spring Web
+#### SQL
+- Spring Data JPA
+- PostgreSQL Driver
+#### I/O
+- Validation
+- Java Mail Sender
+#### Developer Tools
+- Lombok
+#### Security
+- Spring Security
+#### Template Engines
+- Thymeleaf
