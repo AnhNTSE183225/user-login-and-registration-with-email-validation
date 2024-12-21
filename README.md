@@ -36,5 +36,9 @@ JWT | Spring boot &amp; Angular | User Login &amp; Registration with Email valid
 - Lombok
 #### Security
 - Spring Security
+- JJWT API
+- JJWT Jackson
+- JJWT Implementation
 #### Template Engines
 - Thymeleaf
+- Springdoc OpenAPI Starter WebMVC UI
