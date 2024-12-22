@@ -4,9 +4,11 @@ import com.theanh.booknetwork.dto.request.RegistrationRequest;
 import com.theanh.booknetwork.entity.Role;
 import com.theanh.booknetwork.entity.Token;
 import com.theanh.booknetwork.entity.User;
+import com.theanh.booknetwork.enums.EmailTemplateName;
 import com.theanh.booknetwork.repository.RoleRepository;
 import com.theanh.booknetwork.repository.TokenRepository;
 import com.theanh.booknetwork.repository.UserRepository;
+import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,6 +24,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Value("${application.security.jwt.activation-code-length}")
     private int activationCodeLength;
 
+    @Value("${application.mailing.front-end.activation-url}")
+    private String activationUrl;
+
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
@@ -29,7 +34,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final EmailServiceImpl emailService;
 
     @Override
-    public void register(RegistrationRequest request) {
+    public void register(RegistrationRequest request) throws MessagingException{
         Role userRole = roleRepository.findByName("USER")
                 .orElseThrow(() -> new IllegalStateException("Role USER was not initialized"));
         User user = User
@@ -46,8 +51,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         sendValidationEmail(user);
     }
 
-    private void sendValidationEmail(User user) {
+    private void sendValidationEmail(User user) throws MessagingException {
         String newToken = generateAndSaveActivationToken(user);
+        emailService.sendEmail(
+                user.getEmail(),
+                user.getUsername(),
+                EmailTemplateName.ACTIVATE_ACCOUNT,
+                activationUrl,
+                newToken,
+                "Account activation"
+        );
     }
 
     private String generateAndSaveActivationToken(User user) {
