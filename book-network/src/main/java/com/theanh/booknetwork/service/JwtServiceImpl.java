@@ -28,6 +28,14 @@ public class JwtServiceImpl implements JwtService {
     }
 
     @Override
+    public String generateToken(
+            HashMap<String, Object> claims,
+            UserDetails userDetails
+    ) {
+        return buildToken(claims, userDetails, jwtExpiration);
+    }
+
+    @Override
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
@@ -60,13 +68,6 @@ public class JwtServiceImpl implements JwtService {
 
     private Date extractExpiration(String token) {
         return extractClaim(token, Claims::getExpiration);
-    }
-
-    private String generateToken(
-            HashMap<String, Object> claims,
-            UserDetails userDetails
-    ) {
-        return buildToken(claims, userDetails, jwtExpiration);
     }
 
     private String buildToken(
