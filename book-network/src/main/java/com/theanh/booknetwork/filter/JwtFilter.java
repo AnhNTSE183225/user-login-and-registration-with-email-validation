@@ -1,7 +1,6 @@
 package com.theanh.booknetwork.filter;
 
 import com.theanh.booknetwork.service.JwtService;
-import com.theanh.booknetwork.service.JwtServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

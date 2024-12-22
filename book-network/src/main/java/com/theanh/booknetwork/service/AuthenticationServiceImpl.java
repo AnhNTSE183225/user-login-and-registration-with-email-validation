@@ -31,7 +31,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
     private final TokenRepository tokenRepository;
-    private final EmailServiceImpl emailService;
+    private final EmailService emailService;
 
     @Override
     public void register(RegistrationRequest request) throws MessagingException{
